@@ -8,8 +8,14 @@
 
 import UIKit
 
-class DetailsTableViewController: UITableViewController {
+class DetailsTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
 
+    @IBOutlet weak var noteTitle: UITextField!
+    @IBOutlet weak var noteMessage: UITextView!
+    
+    var notePassing:NoteModel?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,8 +24,34 @@ class DetailsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.noteTitle.text = notePassing?.title
+        self.noteMessage.text = notePassing?.message
+        
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string.contains("#")  // or string == "#"
+        {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return true
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,16 +111,6 @@ class DetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 

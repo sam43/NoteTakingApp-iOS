@@ -17,8 +17,9 @@ class NotesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Creating datasource
-       /* let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
+//      Creating datasource
+        
+        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
         
         let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
         
@@ -27,7 +28,7 @@ class NotesViewController: UITableViewController {
         
         notesArray.append(note1)
         notesArray.append(note2)
-        notesArray.append(note3)*/
+        notesArray.append(note3)
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -131,14 +132,36 @@ class NotesViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "gotoAdd" {
+            // add something
+        } else if segue.identifier == "gotoDetails" {
+            //showing the details view
+            
+            //get the cell object first
+            // sender is cell object in this case
+            let cell = sender as! UITableViewCell
+            
+            //get the indexpath for the cell selected
+            let indexPath = tableView.indexPath(for: cell)
+            
+            //get position for the row selected
+            let rowSelected = indexPath?.row
+            print("row selected --> ", rowSelected!)
+            
+            let rowModelSelected = self.notesArray[rowSelected!]
+            
+            let detailsController = segue.destination as! DetailsTableViewController
+            
+            
+            detailsController.notePassing = rowModelSelected
+            
+        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
