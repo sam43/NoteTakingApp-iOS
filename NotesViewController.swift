@@ -27,7 +27,8 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(getDocDir())
+        
 //      Creating datasource
         
 //        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
@@ -229,10 +230,16 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
     
     //MARK:- Archiving Data
     
-//    func getDocDir() -> URL{
-//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)  // userDomainpaths and documentDirectory is only for iPhone apps 
-//        
-//        return path[0]
-//    }
+    func getDocDir() -> URL{
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)  // userDomainpaths and documentDirectory is only for iPhone apps 
+        
+        // getting the filepath to  document
+        return path[0]
+    }
+    
+    func getFilePath () -> URL{
+        return
+            getDocDir().appendingPathComponent("Notes.plist")
+    }
 
 }
