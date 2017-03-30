@@ -12,6 +12,9 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var messageCell: UILabel!
 
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var checkOutlet: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

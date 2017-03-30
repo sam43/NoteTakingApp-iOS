@@ -8,28 +8,39 @@
 
 import UIKit
 
-class NotesViewController: UITableViewController {
+class NotesViewController: UITableViewController, AddNoteDelgate {
 
     var notesArray:[NoteModel] =  []
     
+    func CancelTapped(_ controller: AddNoteTableViewController) {
+        dismiss(animated: true, completion: nil)
+    }
     
+    func DoneTapped(_ controller: AddNoteTableViewController, newNote: NoteModel) {
+        dismiss(animated: true, completion: nil)
+        //self.tableView.reloadData()
+        
+        let rowsToInsertIndexPath = IndexPath(row: self.notesArray.count, section: 0)
+        self.notesArray.append(newNote)
+        self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //      Creating datasource
         
-        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
-        
-        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
-        
-        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
-        
-        
-        notesArray.append(note1)
-        notesArray.append(note2)
-        notesArray.append(note3)
-        
+//        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
+//        
+//        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
+//        
+//        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
+//        
+//        
+//        notesArray.append(note1)
+//        notesArray.append(note2)
+//        notesArray.append(note3)
+//        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,6 +48,11 @@ class NotesViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,30 +94,68 @@ class NotesViewController: UITableViewController {
         cell.messageCell.text = noteModel.message
         
         
+        
         configureCheckmark(for: cell, withModel: noteModel)
 
         return cell
     }
  
-    func configureCheckmark(for cell:UITableViewCell, withModel model:NoteModel) {
+    func configureCheckmark(for cell:NoteTableViewCell, withModel model:NoteModel) {
         
         if model.isDone {
-            cell.accessoryType = .checkmark
+            //cell.accessoryType = .checkmark
+            cell.checkOutlet.isHidden = false
+            cell.title.textColor = UIColor.blue
+            cell.messageCell.textColor = UIColor.gray
+            cell.backgroundColor = UIColor.lightGray
         }
         else{
-            cell.accessoryType = .none
+            cell.checkOutlet.isHidden = true
+            // to something to udo the color or stuff
         }
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let noteModelSelected = self.notesArray[indexPath.row]
+        noteModelSelected.toggleDone()
+        
+        let cell = tableView.cellForRow(at: indexPath) as! NoteTableViewCell
+        
+        //changing the property of cell
+        configureCheckmark(for: cell, withModel: noteModelSelected)
+        
+        //deselect the row
+        tableView.deselectRow(at: indexPath, animated: true)
 
-    /*
+        
+    }
+    
+
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        
+        if indexPath.row == 0 {
+            return false
+        }
+        
         return true
     }
-    */
+
+    
+    // to have the control the cell
+    
+//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        if indexPath.row == 0 {
+//            return nil  // this row can not be selected/ Disallow selection for specific cell
+//        } else {
+//            return indexPath
+//        }
+//    }
 
 
     // Override to support editing the table view.
@@ -117,12 +171,12 @@ class NotesViewController: UITableViewController {
     }
  
 
-    /*
+
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
+
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -137,6 +191,15 @@ class NotesViewController: UITableViewController {
         
         if segue.identifier == "gotoAdd" {
             // add something
+            print("Show add note")
+            
+            let navigationController = segue.destination as! UINavigationController
+            
+            let addNoteController = navigationController.topViewController as! AddNoteTableViewController
+            
+            addNoteController.delegate = self
+            
+            
         } else if segue.identifier == "gotoDetails" {
             //showing the details view
             
@@ -163,5 +226,13 @@ class NotesViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+    
+    //MARK:- Archiving Data
+    
+//    func getDocDir() -> URL{
+//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)  // userDomainpaths and documentDirectory is only for iPhone apps 
+//        
+//        return path[0]
+//    }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct NoteModel {
+class NoteModel {
 
     var title:String
     var message:String
@@ -20,7 +20,7 @@ struct NoteModel {
     }
     
     
-    mutating func toggleDone() {
+    func toggleDone() {
         
         self.isDone = !isDone
     

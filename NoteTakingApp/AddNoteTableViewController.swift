@@ -8,24 +8,35 @@
 
 import UIKit
 
+protocol AddNoteDelgate {
+    func CancelTapped (_ controller: AddNoteTableViewController)
+    func DoneTapped (_ controller: AddNoteTableViewController, newNote:NoteModel)
+}
+
 class AddNoteTableViewController: UITableViewController {
+    
+    var delegate:AddNoteDelgate?
+
+    @IBOutlet weak var noteMessageTextview : UITextView!
+    @IBOutlet weak var noteTitleTextview : UITextField!
+    
+    
     @IBAction func doneButton(_ sender: Any) {
         
-        let noteModel = NoteModel(title: noteTitleTextview.text!, message: noteMessageTextview.text)
+        //let noteModel = NoteModel(title: noteTitleTextview.text!, message: noteMessageTextview.text)
         // return this to notesViewController
         
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        let noteModel = NoteModel(title: noteTitleTextview.text!, message: noteMessageTextview.text)
+        
+        self.delegate?.DoneTapped(self, newNote: noteModel)
     }
-   
+    
     @IBAction func cancelButton(_ sender: Any) {
         
-        dismiss(animated: true, completion: nil)// we can have this dismiss only in present modaly segue
+        //dismiss(animated: true, completion: nil)// we can have this dismiss only in present modaly segue
+        self.delegate?.CancelTapped(self)
     }
-    @IBOutlet weak var noteMessageTextview
-    : UITextView!
-    @IBOutlet weak var noteTitleTextview
-    
-    : UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +71,7 @@ class AddNoteTableViewController: UITableViewController {
 
         // Configure the cell...
 
-        return cell
+        return cell.
     }
     */
 

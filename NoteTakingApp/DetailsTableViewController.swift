@@ -32,6 +32,14 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, UI
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        let oldText = textField.text! as NSString
+        let newText = oldText.replacingCharacters(in: range, with: string)
+        
+        notePassing!.title = newText
+        
+        print(notePassing!.title)
+        //print(notePassing!.message)
+        
         if string.contains("#")  // or string == "#"
         {
             return false
@@ -47,6 +55,15 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, UI
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let oldText = textView.text! as NSString
+        //let newText = oldText.replacingCharacters(in: range, with: string)
+        let newTextMsg = oldText.replacingCharacters(in: range, with: text)
+        
+        notePassing!.message = newTextMsg
+
+        print(notePassing!.message)
+        
         return true
     }
     
