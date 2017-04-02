@@ -8,11 +8,22 @@
 
 import UIKit
 
-class NotesViewController: UITableViewController {
+class NotesViewController: UITableViewController, AddNoteDelgate {
 
     var notesArray:[NoteModel] =  []
     
+    func CancelTapped(_ controller: AddNoteTableViewController) {
+        dismiss(animated: true, completion: nil)
+    }
     
+    func DoneTapped(_ controller: AddNoteTableViewController, newNote: NoteModel) {
+        dismiss(animated: true, completion: nil)
+        //self.tableView.reloadData()
+        
+        let rowsToInsertIndexPath = IndexPath(row: self.notesArray.count, section: 0)
+        self.notesArray.append(newNote)
+        self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +48,11 @@ class NotesViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,30 +94,51 @@ class NotesViewController: UITableViewController {
         cell.messageCell.text = noteModel.message
         
         
+        
         configureCheckmark(for: cell, withModel: noteModel)
 
         return cell
     }
  
-    func configureCheckmark(for cell:UITableViewCell, withModel model:NoteModel) {
+    func configureCheckmark(for cell:NoteTableViewCell, withModel model:NoteModel) {
         
         if model.isDone {
-            cell.accessoryType = .checkmark
+            //cell.accessoryType = .checkmark
+            cell.checkOutlet.isHidden = false
         }
         else{
-            cell.accessoryType = .none
+            cell.checkOutlet.isHidden = true
         }
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
-    /*
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        
+        if indexPath.row == 0 {
+            return false
+        }
+        
         return true
     }
-    */
+
+    
+    // to have the control the cell
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.row == 0 {
+            return nil  // this row can not be selected/ Disallow selection for specific cell
+        } else {
+            return indexPath
+        }
+    }
 
 
     // Override to support editing the table view.
@@ -117,12 +154,12 @@ class NotesViewController: UITableViewController {
     }
  
 
-    /*
+
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
+
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -137,6 +174,15 @@ class NotesViewController: UITableViewController {
         
         if segue.identifier == "gotoAdd" {
             // add something
+            print("Show add note")
+            
+            let navigationController = segue.destination as! UINavigationController
+            
+            let addNoteController = navigationController.topViewController as! AddNoteTableViewController
+            
+            addNoteController.delegate = self
+            
+            
         } else if segue.identifier == "gotoDetails" {
             //showing the details view
             

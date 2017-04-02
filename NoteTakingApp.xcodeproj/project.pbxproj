@@ -15,6 +15,7 @@
 		3540086D1E82AB1600821367 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3540086C1E82AB1600821367 /* NoteModel.swift */; };
 		3584A5731E83EA92005E8836 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584A5721E83EA92005E8836 /* NoteTableViewCell.swift */; };
 		3584A5751E8403F1005E8836 /* AddNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */; };
+		CB10ED931E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */; };
 		CB7F94801E89334900770FC8 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		3540086C1E82AB1600821367 /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoteModel.swift; path = ../NoteModel.swift; sourceTree = "<group>"; };
 		3584A5721E83EA92005E8836 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteTableViewController.swift; sourceTree = "<group>"; };
+		CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProtocolTabItem.swift; sourceTree = "<group>"; };
 		CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,18 +64,43 @@
 		354008571E82A9C200821367 /* NoteTakingApp */ = {
 			isa = PBXGroup;
 			children = (
+				CB10ED961E8A96A300DD5D16 /* Protocols */,
+				CB10ED951E8A968C00DD5D16 /* Models */,
+				CB10ED941E8A966400DD5D16 /* Controller */,
 				354008581E82A9C200821367 /* AppDelegate.swift */,
-				3540086C1E82AB1600821367 /* NoteModel.swift */,
-				3540086A1E82AA9700821367 /* NotesViewController.swift */,
 				3584A5721E83EA92005E8836 /* NoteTableViewCell.swift */,
-				3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */,
 				3540085C1E82A9C200821367 /* Main.storyboard */,
-				CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */,
 				3540085F1E82A9C200821367 /* Assets.xcassets */,
 				354008611E82A9C200821367 /* LaunchScreen.storyboard */,
 				354008641E82A9C200821367 /* Info.plist */,
 			);
 			path = NoteTakingApp;
+			sourceTree = "<group>";
+		};
+		CB10ED941E8A966400DD5D16 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */,
+				3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */,
+				3540086A1E82AA9700821367 /* NotesViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		CB10ED951E8A968C00DD5D16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3540086C1E82AB1600821367 /* NoteModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CB10ED961E8A96A300DD5D16 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB10ED931E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift in Sources */,
 				3540086B1E82AA9700821367 /* NotesViewController.swift in Sources */,
 				3584A5751E8403F1005E8836 /* AddNoteTableViewController.swift in Sources */,
 				3540086D1E82AB1600821367 /* NoteModel.swift in Sources */,
