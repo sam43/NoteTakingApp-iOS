@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c8Y-58-Qi7" id="lC5-YG-Vof">
-                                    <rect key="frame" x="0.0" y="0.0" width="308" height="103"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="308" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH6-1U-g5h">
@@ -122,7 +122,7 @@
                             <tableViewSection headerTitle="Detail Message" id="TfA-8a-qaC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="288" id="K5H-To-OZH">
-                                        <rect key="frame" x="0.0" y="156" width="375" height="288"/>
+                                        <rect key="frame" x="0.0" y="157" width="375" height="288"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K5H-To-OZH" id="Mnh-Jx-Ncd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="287"/>
@@ -155,6 +155,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="TbK-kd-MTP">
                             <connections>
                                 <action selector="doneButton:" destination="KnZ-fR-gbP" id="fbf-Cw-1l2"/>
+                                <segue destination="3W6-pP-nn1" kind="unwind" unwindAction="unwindSegueWithSegue:" id="SK2-rm-X8O"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -164,6 +165,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDx-p2-Wz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3W6-pP-nn1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="822" y="-349"/>
         </scene>
@@ -209,7 +211,7 @@
                             <tableViewSection headerTitle="Detail Message" id="hAl-MK-bFK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="261" id="DbY-pu-NjK">
-                                        <rect key="frame" x="0.0" y="156" width="375" height="261"/>
+                                        <rect key="frame" x="0.0" y="157" width="375" height="261"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DbY-pu-NjK" id="C6x-sB-LHc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>

@@ -16,6 +16,8 @@ protocol AddNoteDelgate {
 class AddNoteTableViewController: UITableViewController {
     
     var delegate:AddNoteDelgate?
+    
+    var noteCreated:NoteModel?
 
     @IBOutlet weak var noteMessageTextview : UITextView!
     @IBOutlet weak var noteTitleTextview : UITextField!
@@ -27,15 +29,14 @@ class AddNoteTableViewController: UITableViewController {
         // return this to notesViewController
         
         //dismiss(animated: true, completion: nil)
-        let noteModel = NoteModel(title: noteTitleTextview.text!, message: noteMessageTextview.text)
         
-        self.delegate?.DoneTapped(self, newNote: noteModel)
+//        self.delegate?.DoneTapped(self, newNote: noteModel)
     }
     
     @IBAction func cancelButton(_ sender: Any) {
         
-        //dismiss(animated: true, completion: nil)// we can have this dismiss only in present modaly segue
-        self.delegate?.CancelTapped(self)
+        dismiss(animated: true, completion: nil)// we can have this dismiss only in present modaly segue
+        //self.delegate?.CancelTapped(self)
     }
 
     override func viewDidLoad() {
@@ -110,14 +111,16 @@ class AddNoteTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        noteCreated = NoteModel(title: noteTitleTextview.text!, message: noteMessageTextview.text)
+        
     }
-    */
+
 
 }

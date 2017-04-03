@@ -8,22 +8,33 @@
 
 import UIKit
 
-class NotesViewController: UITableViewController, AddNoteDelgate {
+class NotesViewController: UITableViewController {
 
     var notesArray:[NoteModel] =  []
     
-    func CancelTapped(_ controller: AddNoteTableViewController) {
-        dismiss(animated: true, completion: nil)
+    //unwind segue method implementation
+    
+    @IBAction func unwindSegue (segue: UIStoryboardSegue) {
+        let addNoteController = segue.source as! AddNoteTableViewController
+        self.notesArray.append(addNoteController.noteCreated!)
+        savingNotes()
+        //loadNotes()
+        self.tableView.reloadData()
     }
     
-    func DoneTapped(_ controller: AddNoteTableViewController, newNote: NoteModel) {
-        dismiss(animated: true, completion: nil)
-        //self.tableView.reloadData()
-        
-        let rowsToInsertIndexPath = IndexPath(row: self.notesArray.count, section: 0)
-        self.notesArray.append(newNote)
-        self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
-    }
+    
+//    func CancelTapped(_ controller: AddNoteTableViewController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//    
+//    func DoneTapped(_ controller: AddNoteTableViewController, newNote: NoteModel) {
+//        dismiss(animated: true, completion: nil)
+//        //self.tableView.reloadData()
+//        
+          //let rowsToInsertIndexPath = IndexPath(row: self.notesArray.count, section: 0)
+//        self.notesArray.append(newNote)
+          //self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +42,17 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
         
 //      Creating datasource
         
-//        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
-//        
-//        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
-//        
-//        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
-//        
-//        
-//        notesArray.append(note1)
-//        notesArray.append(note2)
-//        notesArray.append(note3)
-//        
+        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
+        
+        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
+        
+        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
+        
+        
+        notesArray.append(note1)
+        notesArray.append(note2)
+        notesArray.append(note3)
+//
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,7 +64,8 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.tableView.reloadData()
+        self.notesArray = loadNotes()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,18 +202,19 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "gotoAdd" {
-            // add something
-            print("Show add note")
-            
-            let navigationController = segue.destination as! UINavigationController
-            
-            let addNoteController = navigationController.topViewController as! AddNoteTableViewController
-            
-            addNoteController.delegate = self
-            
-            
-        } else if segue.identifier == "gotoDetails" {
+//        if segue.identifier == "gotoAdd" {
+//            // add something
+//            print("Show add note")
+//            
+//            let navigationController = segue.destination as! UINavigationController
+//            
+//            let addNoteController = navigationController.topViewController as! AddNoteTableViewController
+//            
+//            addNoteController.delegate = self
+//            
+//            
+//        } else 
+        if segue.identifier == "gotoDetails" {
             //showing the details view
             
             //get the cell object first
@@ -240,6 +253,32 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
     func getFilePath () -> URL{
         return
             getDocDir().appendingPathComponent("Notes.plist")
+    }
+    
+    func savingNotes () {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        
+        archiver.encode(self.notesArray, forKey: "Notes")
+        archiver.finishEncoding()
+        data.write(to: getFilePath(), atomically: true)
+        
+    }
+    
+    func loadNotes () -> [NoteModel] {
+        var notes:[NoteModel] = []
+        let path = getFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            
+            notes = unarchiver.decodeObject(forKey: "Notes") as! [NoteModel]
+            
+            unarchiver.finishDecoding()
+        }
+        
+        return notes
+        
     }
 
 }
