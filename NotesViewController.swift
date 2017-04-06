@@ -66,6 +66,23 @@ class NotesViewController: UITableViewController {
         super.viewDidAppear(animated)
         self.notesArray = loadNotes()
         self.tableView.reloadData()
+        
+        /*
+         
+         //getting user preferences
+         
+         let def = UserDefaults.standard
+         def.set("Value", forKey: "val")
+         */
+
+        /*
+        //setting the user preferences data
+        
+        let defSet = UserDefaults.standard
+        self.title = defSet.string(forKey: "val")
+         */
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -178,6 +195,7 @@ class NotesViewController: UITableViewController {
             
             self.notesArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            savingNotes()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -187,7 +205,7 @@ class NotesViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+            savingNotes()
     }
 
 
