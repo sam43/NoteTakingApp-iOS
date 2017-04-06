@@ -30,16 +30,16 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
 
 //      Creating datasource
         
-        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
-        
-        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
-        
-        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
-        
-        
-        notesArray.append(note1)
-        notesArray.append(note2)
-        notesArray.append(note3)
+//        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
+//        
+//        let note2 = NoteModel(title: "Class", message: "One more type in swift where we can use object oriented principles")
+//        
+//        let note3 = NoteModel(title: "Protocol", message: "One more very important type in swift")
+//        
+//        
+//        notesArray.append(note1)
+//        notesArray.append(note2)
+//        notesArray.append(note3)
         
         
         // Uncomment the following line to preserve selection between presentations
