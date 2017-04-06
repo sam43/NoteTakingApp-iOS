@@ -17,6 +17,7 @@
 		3584A5751E8403F1005E8836 /* AddNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */; };
 		CB10ED931E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */; };
 		CB7F94801E89334900770FC8 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */; };
+		FC2EF88C1E96C6AE00A09FB1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EF88B1E96C6AE00A09FB1 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteTableViewController.swift; sourceTree = "<group>"; };
 		CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProtocolTabItem.swift; sourceTree = "<group>"; };
 		CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
+		FC2EF88B1E96C6AE00A09FB1 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		CB10ED961E8A96A300DD5D16 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				FC2EF88B1E96C6AE00A09FB1 /* Protocols.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				354008591E82A9C200821367 /* AppDelegate.swift in Sources */,
 				CB7F94801E89334900770FC8 /* DetailsTableViewController.swift in Sources */,
 				3584A5731E83EA92005E8836 /* NoteTableViewCell.swift in Sources */,
+				FC2EF88C1E96C6AE00A09FB1 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
