@@ -15,6 +15,7 @@
 		3540086D1E82AB1600821367 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3540086C1E82AB1600821367 /* NoteModel.swift */; };
 		3584A5731E83EA92005E8836 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584A5721E83EA92005E8836 /* NoteTableViewCell.swift */; };
 		3584A5751E8403F1005E8836 /* AddNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */; };
+		CB10ED931E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */; };
 		CB7F94801E89334900770FC8 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		3540086C1E82AB1600821367 /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoteModel.swift; path = ../NoteModel.swift; sourceTree = "<group>"; };
 		3584A5721E83EA92005E8836 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		3584A5741E8403F1005E8836 /* AddNoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteTableViewController.swift; sourceTree = "<group>"; };
+		CB10ED921E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProtocolTabItem.swift; sourceTree = "<group>"; };
 		CB7F947F1E89334900770FC8 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB10ED931E8A8A8500DD5D16 /* DelegateProtocolTabItem.swift in Sources */,
 				3540086B1E82AA9700821367 /* NotesViewController.swift in Sources */,
 				3584A5751E8403F1005E8836 /* AddNoteTableViewController.swift in Sources */,
 				3540086D1E82AB1600821367 /* NoteModel.swift in Sources */,

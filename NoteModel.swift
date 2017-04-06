@@ -19,6 +19,18 @@ class NoteModel {
         self.message = message
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        self.title = aDecoder.decodeObject(forKey: "Title") as! String
+        self.message = aDecoder.decodeObject(forKey: "Message") as! String
+        self.isDone = aDecoder.decodeBool(forKey: "Done")
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: "Title")
+        aCoder.encode(message, forKey: "Message")
+        aCoder.encode(isDone, forKey: "Done")
+    }
+    
     
     func toggleDone() {
         

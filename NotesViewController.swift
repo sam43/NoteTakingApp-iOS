@@ -25,9 +25,23 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
         self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
     }
     
+//    func CancelTapped(_ controller: AddNoteTableViewController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//    
+//    func DoneTapped(_ controller: AddNoteTableViewController, newNote: NoteModel) {
+//        dismiss(animated: true, completion: nil)
+//        //self.tableView.reloadData()
+//        
+          //let rowsToInsertIndexPath = IndexPath(row: self.notesArray.count, section: 0)
+//        self.notesArray.append(newNote)
+          //self.tableView.insertRows(at: [rowsToInsertIndexPath], with: .automatic)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(getDocDir())
+        
 //      Creating datasource
         
 //        let note1 = NoteModel(title: "Structture", message: "Structtures are like classes in swift")
@@ -148,6 +162,7 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
             
             self.notesArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            savingNotes()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -157,7 +172,7 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+            savingNotes()
     }
 
 
@@ -208,6 +223,46 @@ class NotesViewController: UITableViewController, AddNoteDelgate {
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    }
+    
+    //MARK:- Archiving Data
+    
+    func getDocDir() -> URL{
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)  // userDomainpaths and documentDirectory is only for iPhone apps 
+        
+        // getting the filepath to  document
+        return path[0]
+    }
+    
+    func getFilePath () -> URL{
+        return
+            getDocDir().appendingPathComponent("Notes.plist")
+    }
+    
+    func savingNotes () {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        
+        archiver.encode(self.notesArray, forKey: "Notes")
+        archiver.finishEncoding()
+        data.write(to: getFilePath(), atomically: true)
+        
+    }
+    
+    func loadNotes () -> [NoteModel] {
+        var notes:[NoteModel] = []
+        let path = getFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            
+            notes = unarchiver.decodeObject(forKey: "Notes") as! [NoteModel]
+            
+            unarchiver.finishDecoding()
+        }
+        
+        return notes
+        
     }
 
 }
